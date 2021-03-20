@@ -1,24 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
 
 function App() {
+  let id = 0;
+  const [todoInput, setTodoInput] = useState("");
+
+  let todos: string[] = ["Sidd"];
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    todos.push(todoInput);
+    setTodoInput("");
+    console.log(todos);
+    console.log(e.target[0].value);
+    id += 1;
+    // todos.push(e.target[0].value);
+    // console.log(e)
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <form onSubmit={handleSubmit}>
+        <input
+          type='text'
+          value={todoInput}
+          onChange={(e) => setTodoInput(e.target.value)}
+        />
+        <button>Submit</button>
+      </form>
+
+      <ul>
+        {todos.map((todo) => (
+          <li key={id}>{todo}</li>
+        ))}
+      </ul>
     </div>
   );
 }
