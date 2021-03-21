@@ -1,19 +1,19 @@
 import { useState } from "react";
 import "./App.css";
 
-function App() {
-  let id = 0;
+export default function App() {
   const [todoInput, setTodoInput] = useState("");
+  const [id, setId] = useState(0)
+  const [todos, setTodos]: any = useState([])
 
-  let todos: string[] = ["Sidd"];
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    todos.push(todoInput);
+    if (todoInput === "") return;
+    setTodos((todo: any) => [...todo, todoInput])
+    console.log(todos)
     setTodoInput("");
-    console.log(todos);
-    console.log(e.target[0].value);
-    id += 1;
-    // todos.push(e.target[0].value);
+    setId(id + 1);
+
     // console.log(e)
   };
   return (
@@ -28,12 +28,10 @@ function App() {
       </form>
 
       <ul>
-        {todos.map((todo) => (
+        {todos.map((todo: string) => (
           <li key={id}>{todo}</li>
         ))}
       </ul>
     </div>
   );
 }
-
-export default App;
