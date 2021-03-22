@@ -17,9 +17,22 @@ ul {
 }
 
 li {
-  margin-top: 10xp;
+  margin-top: 10px;
 }
 
 form {
   margin-top: 10%;
+}
+
+input, button:focus {
+  outline: none;
+}
+
+h1 {
+  color: teal
+}
+
+.btn {
+  background-color: teal;
+  margin-left: 50px;
 }
